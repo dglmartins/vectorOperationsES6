@@ -119,6 +119,23 @@ class Vector {
       return this.minus(projectionOntoBase);
     }
 
+    cross = (otherVector) => {
+      const [x1, y1, z1] = this.coordinates;
+      const [x2, y2, z2] = otherVector.coordinates;
+      const newCoordinates = [ y1*z2 - y2*z1 , -(x1*z2 - x2*z1), x1*y2 - x2*y1 ];
+      return new Vector(newCoordinates);
+    }
+
+    areaParallelogramWith = (otherVector) => {
+      const crossProductVector = this.cross(otherVector);
+      return crossProductVector.magnitude();
+    }
+
+    areaTriangleWith = (otherVector) => {
+      return this.areaParallelogram(otherVector)/2;
+    }
+
+
 
 }
 
